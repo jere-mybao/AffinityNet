@@ -22,8 +22,8 @@ exportChatML[filename_, lines_List] := With[
   Export[filename, #, "Text"]&@ StringRiffle[#, "\n"]&@ rows]
   
 exportOpenPipeChatML[filename_, train_, test_]:= With[
-	{tr = Append[<|"split"->"Train"|>]/@ train,
-	 te = Append[<|"split"->"Valid"|>]/@ test},
+	{tr = Append[<|"split"->"TRAIN"|>]/@ train,
+	 te = Append[<|"split"->"TEST"|>]/@ test},
 	exportChatML[filename, Join[tr, te]]]
 	
 importJSONL[filename_?FileExistsQ]:=
