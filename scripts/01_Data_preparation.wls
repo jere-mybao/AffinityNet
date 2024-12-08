@@ -1,7 +1,7 @@
 #!/usr/bin/env wolframscript
 (* ::Package:: *)
 
-(* Set the working directory (update the path as needed) *)
+(* Set the working directory *)
 SetDirectory["~/repos/InhibitGPT/scripts"];
 
 (* Import the dataset *)
@@ -22,34 +22,42 @@ PieChart[
   ChartStyle -> {Green, Red}] //
     Export["../figures/active_inactive_classes.jpg", #] &;
 
-(* Filter and export data by 'Model' column with custom formatting *)
+(* Helper function to format and export data *)
 exportData[model_] := Module[{filteredData, formattedData},
    (* Filter rows based on the 'Model' column *)
    filteredData = Select[d, #["Model"] == model &];
    
-   (* Format data as "mol" -> "Active"/"Inactive" *)
-    formattedData = StringJoin[
-      Map[
-        Function[row, 
-          StringTemplate["\"`mol`\" -> \"`class`\"\n"][
-            <|
-              "mol" -> row["mol"], 
-              "class" -> If[row["Class"] == 1, "Active", "Inactive"]
-            |>
-          ]
-        ],
-        Normal[filteredData] (* Ensure the data is a list, not a Dataset *)
-      ]
-    ];
+   (* Format data as mol -> activity *)
+   formattedData = Map[
+     Function[row,
+       row["mol"] -> If[row["Class"] == 1, "Active", "Inactive"]
+     ],
+     Normal[filteredData]
+   ];
 
    (* Export formatted data to a text file *)
    Export[
      StringTemplate["../data/`model`.txt"]@<|"model" -> ToLowerCase[model]|>,
-     formattedData,
+     StringJoin[
+       Map[
+         Function[pair, StringTemplate["\"`mol`\" -> \"`class`\"\n"][
+           <|"mol" -> First[pair], "class" -> Last[pair]|>
+         ]],
+         formattedData
+       ]
+     ],
      "Text"
    ];
+   
+   (* Return the formatted data for .mx saving *)
+   formattedData
 ];
 
-(* Export Train and Valid files *)
-exportData["Train"];
-exportData["Valid"];
+(* Generate and save train and test files *)
+train = exportData["Train"];
+test = exportData["Valid"];
+
+(* Save train and test datasets to a .mx file *)
+DumpSave["../data/split.mx", {train, test}];
+
+Print["train.txt, test.txt, and split.mx have been created successfully!"];
