@@ -46,7 +46,7 @@ What about fine-tuning LLMs on this?  We use the system prompt: `You are a chemi
 
 The molecular structure is provided as the user content and the activity level is the agent response.  We fine-tuned this on [Openpipe](https://openpipe.ai) using default hyperparameters, then downloaded the evaluated results.
 
-The two fine-tuned LLMs are comparable (84-85% accuracy), which is a noticeable improvement upon using the edit distance/string similarity. Not bad for a chatbot! 
+The (4) four fine-tuned LLMs are comparable (81-84% accuracy), which is a noticeable improvement upon using the edit distance/string similarity. Not bad for a chatbot! 
 
 - Fine-tuning Llama-3.1 model cost $3.83 USD;  I've put the LoRA BF16 weights in `models`.
 - Fine-tuning gpt-4o-mini model cost $1.02 USD.  You'll have to make your own, if you want to reproduce this, but you can do it easily using the `data/train.jsonl` file.
