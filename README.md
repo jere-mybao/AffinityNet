@@ -27,13 +27,13 @@ For reference, the most common class is "Active" binding affinity, and if you se
 
 ## String Edit Distance
 
-Relevant code is in `scripts/05_Edit_Distance.wls`.  In short, we compute the [Levenshtein edit distance](https://reference.wolfram.com/language/ref/EditDistance.html) between the a query chemical structure and the examples in the training set, and select the nearest one.  The premise here is that similar formulas should have similar results. This gives surprisingly high accuracy of 77%.
+Relevant code is in `scripts/05_Edit_Distance.wls`.  In short, we compute the [Levenshtein edit distance](https://reference.wolfram.com/language/ref/EditDistance.html) between the a query chemical structure and the examples in the training set, and select the nearest one.  The premise here is that similar formulas should have similar results. This gives surprisingly high accuracy of ~77%.
 
 ## SentenceBERT vector similarity
 
 Next, we examined encoding the chemical formulas using [SentenceBERT](https://arxiv.org/abs/1908.10084). Naively, we don't expect this to be amazing, as SentenceBERT is really more about semantic meaning of general text, but it is easy enough to do. Implementation is in `scripts/02_SentenceBert_Similarity.wls`
 
-Using the nearest similarity example yields 80% accuracy (comparable, maybe slightly better than string edit distance)
+Using the nearest similarity example yields ~80% accuracy (comparable, maybe slightly better than string edit distance)
 
 **Possible improvements:**
 - Use a different/better similarity function
@@ -46,12 +46,12 @@ What about fine-tuning LLMs on this?  We use the system prompt: `You are a chemi
 
 The molecular structure is provided as the user content and the activity level is the agent response.  We fine-tuned this on [Openpipe](https://openpipe.ai) using default hyperparameters, then downloaded the evaluated results.
 
-The (4) four fine-tuned LLMs are comparable (81-84% accuracy), which is a noticeable improvement upon using the edit distance/string similarity. Not bad for a chatbot! 
+The (4) four fine-tuned LLMs are comparable (~81-84% accuracy), which is a noticeable improvement upon using the edit distance/string similarity. Not bad for a chatbot! 
 
 - Fine-tuning Llama-3.1 model cost $3.83 USD;  I've put the LoRA BF16 weights in `models`.
 - Fine-tuning gpt-4o-mini model cost $1.02 USD.  You'll have to make your own, if you want to reproduce this, but you can do it easily using the `data/train.jsonl` file.
 - Fine-tuning Mistral-Nemo model cost $3.83 USD;  I've put the LoRA BF16 weights in `models`.
-- Fine-tuning Qwen-2.5 model cost $10.31 USD;  I've put the LoRA BF16 weights in `models`.
+- Fine-tuning Qwen-2.5 model cost $20.43 USD;  I've put the LoRA BF16 weights in `models`.
 
 **Possible improvements:**
 - Play with fine-tuning hyperparameters and prompt
