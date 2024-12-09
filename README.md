@@ -51,7 +51,7 @@ The (4) four fine-tuned LLMs are comparable (~81-84% accuracy), which is a notic
 - Fine-tuning Llama-3.1 model cost $3.83 USD;  I've put the LoRA BF16 weights in `models`.
 - Fine-tuning gpt-4o-mini model cost $1.02 USD.  You'll have to make your own, if you want to reproduce this, but you can do it easily using the `data/train.jsonl` file.
 - Fine-tuning Mistral-Nemo model cost $3.83 USD;  I've put the LoRA BF16 weights in `models`.
-- Fine-tuning Qwen-2.5 model cost $20.43 USD;  I've put the LoRA BF16 weights in `models`.
+- Fine-tuning Qwen-2.5 model cost $20.43 USD.
 
 **Possible improvements:**
 - Play with fine-tuning hyperparameters and prompt
