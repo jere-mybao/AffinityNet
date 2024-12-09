@@ -8,7 +8,7 @@ output_dir = "../figures/"
 os.makedirs(output_dir, exist_ok=True)
 
 # Data for the chart
-accuracy = [81.7, 83.4, 81.4, 83.4, 75.9, 77.3, 55.8]
+accuracy = [81.7, 83.4, 81.4, 82.7, 80.3, 77.3, 55.8]
 labels = [
     "Fine-tuned gpt-4o-mini",
     "Fine-tuned Llama-3.1-8B",
@@ -63,6 +63,6 @@ sns.despine(left=True)
 
 # Save the chart as an image
 plt.tight_layout()
-output_path = os.path.join(output_dir, "summary_barchart_nice.png")
+output_path = os.path.join(output_dir, "summary_barchart.png")
 plt.savefig(output_path, dpi=300)
 plt.show()
