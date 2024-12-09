@@ -29,17 +29,11 @@ For reference, the most common class is "Active" binding affinity, and if you se
 
 Relevant code is in `scripts/05_Edit_Distance.wls`.  In short, we compute the [Levenshtein edit distance](https://reference.wolfram.com/language/ref/EditDistance.html) between the a query chemical structure and the examples in the training set, and select the nearest one.  The premise here is that similar formulas should have similar results. This gives surprisingly high accuracy of 77%.
 
-![Edit Distance Result](figures/string_edit_distance_predictions.jpg)
-
-
 ## SentenceBERT vector similarity
 
 Next, we examined encoding the chemical formulas using [SentenceBERT](https://arxiv.org/abs/1908.10084). Naively, we don't expect this to be amazing, as SentenceBERT is really more about semantic meaning of general text, but it is easy enough to do. Implementation is in `scripts/02_SentenceBert_Similarity.wls`
 
-Using the 10 nearest items example yields the best results (comparable, maybe slightly better than string edit distance):
-
-![sentence BERT commonest of 10](figures/commonest_sentenceBERT_similarity.jpg)
-
+Using the nearest similarity example yields 80% accuracy (comparable, maybe slightly better than string edit distance)
 
 **Possible improvements:**
 - Use a different/better similarity function
@@ -58,22 +52,6 @@ The two fine-tuned LLMs are comparable (84-85% accuracy), which is a noticeable 
 - Fine-tuning gpt-4o-mini model cost $1.02 USD.  You'll have to make your own, if you want to reproduce this, but you can do it easily using the `data/train.jsonl` file.
 - Fine-tuning Mistral-Nemo model cost $3.83 USD;  I've put the LoRA BF16 weights in `models`.
 - Fine-tuning Qwen-2.5 model cost $10.31 USD;  I've put the LoRA BF16 weights in `models`.
-
-### Llama-3.1-8b
-
-![Llama-3.1-8B confusion matrix](figures/llama31_predictions.jpg)
-
-### GPT-4o-mini
-
-![GPT-4o-mini confusion matrix](figures/gpt4omini_predictions.jpg)
-
-### Mistral-Nemo-12B
-
-![Mistral-Nemo-12B confusion matrix](figures/mistralnemo_predictions.jpg)
-
-### Qwen-2.5-70b
-
-![Qwen-2.5-70B confusion matrix](figures/qwen25_predictions.jpg)
 
 **Possible improvements:**
 - Play with fine-tuning hyperparameters and prompt
