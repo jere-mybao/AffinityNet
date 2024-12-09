@@ -36,11 +36,7 @@ Relevant code is in `scripts/05_Edit_Distance.wls`.  In short, we compute the [L
 
 Next, we examined encoding the chemical formulas using [SentenceBERT](https://arxiv.org/abs/1908.10084). Naively, we don't expect this to be amazing, as SentenceBERT is really more about semantic meaning of general text, but it is easy enough to do. Implementation is in `scripts/02_SentenceBert_Similarity.wls`
 
-Using the nearest similarity example yields the best results (comparable, maybe slightly better than string edit distance):
-
-![sentence BERT nearest](figures/nearest_sentenceBERT_similarity.jpg)
-
-We can also look at the commonest label for the 10 nearest items:
+Using the 10 nearest items example yields the best results (comparable, maybe slightly better than string edit distance):
 
 ![sentence BERT commonest of 10](figures/commonest_sentenceBERT_similarity.jpg)
 
@@ -50,7 +46,7 @@ We can also look at the commonest label for the 10 nearest items:
 - Tune the number of nearest-neighbors to consider
 
 
-## Fine-tuned LLM models (Lllama 3.1-8B and GPT-40-mini) 
+## Fine-tuned LLM models
 
 What about fine-tuning LLMs on this?  We use the system prompt: `You are a cheminformatics expert predicting the activity state of a molecule based on its chemical structure. Answer only with the following activity states and no other output: Active, Inactive.`
 
@@ -58,9 +54,10 @@ The molecular structure is provided as the user content and the activity level i
 
 The two fine-tuned LLMs are comparable (84-85% accuracy), which is a noticeable improvement upon using the edit distance/string similarity. Not bad for a chatbot! 
 
-Fine-tuning Llama-3.1 model cost $2.48 USD;  I've put the LoRA BF16 weights in `models`.
-
-Fine-tuning gpt-4o-mini model cost $2.22 USD.  You'll have to make your own, if you want to reproduce this, but you can do it easily using the `data/train.jsonl` file.
+- Fine-tuning Llama-3.1 model cost $3.83 USD;  I've put the LoRA BF16 weights in `models`.
+- Fine-tuning gpt-4o-mini model cost $1.02 USD.  You'll have to make your own, if you want to reproduce this, but you can do it easily using the `data/train.jsonl` file.
+- Fine-tuning Mistral-Nemo model cost $3.83 USD;  I've put the LoRA BF16 weights in `models`.
+- Fine-tuning Qwen-2.5 model cost $10.31 USD;  I've put the LoRA BF16 weights in `models`.
 
 ### Llama-3.1-8b
 
@@ -69,6 +66,14 @@ Fine-tuning gpt-4o-mini model cost $2.22 USD.  You'll have to make your own, if 
 ### GPT-4o-mini
 
 ![GPT-4o-mini confusion matrix](figures/gpt4omini_predictions.jpg)
+
+### Mistral-Nemo-12B
+
+![Mistral-Nemo-12B confusion matrix](figures/mistralnemo_predictions.jpg)
+
+### Qwen-2.5-70b
+
+![Qwen-2.5-70B confusion matrix](figures/qwen25_predictions.jpg)
 
 **Possible improvements:**
 - Play with fine-tuning hyperparameters and prompt
@@ -79,4 +84,4 @@ Fine-tuning gpt-4o-mini model cost $2.22 USD.  You'll have to make your own, if 
 
 It is possible to predict binding affinities for inhibitors given its chemical structure with reasonable accuracy using these text-based approaches. Additionally, adopting a text based approach may be more natural for scientific users.
 
-![summary barchart](figures/summary_barchart.jpg)
+![summary barchart](figures/summary_barchart.png)
