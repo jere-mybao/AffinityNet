@@ -1,5 +1,7 @@
 # AffinityNet
 
+Link to paper: (https://docs.google.com/document/d/1VHyY4qUn-1ER0_YAZ4OOUxOGPFnBJKkN4_WsmpUCdh4/edit?usp=sharing)
+
 Motivated by Alzheimer’s disease research, particularly the role of β-amyloid (Aβ) plaques in cognitive decline, I am focusing on Beta-Secretase 1 (BACE1) as a therapeutic target. Designing effective BACE1 inhibitors presents challenges, such as achieving selectivity and crossing the blood-brain barrier. Inspired by the findings in [this](https://pubs.acs.org/doi/10.1021/acs.jcim.6b00290) paper, I plan to use the following curated dataset of 1,475 BACE1 inhibitors to improve classification of compound activity based on a threshold (IC50 ≤ 100 nM for “active” and >100 nM for “inactive"). 
 
 This project uses the following [BACE (β-secretase enzyme)](https://raw.githubusercontent.com/deepchem/deepchem/refs/heads/master/datasets/rev8020split_desc.csv) dataset, predicting binding affinities given only the chemical structures describing the molecule: e.g., `Clc1cnc(C(=O)Nc2cc3C4(N=C(N)OC4)CCc3cc2)cc1 -> Active`.  
