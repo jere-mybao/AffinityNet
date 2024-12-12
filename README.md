@@ -1,8 +1,8 @@
 # AffinityNet: Predicting Binding Affinities of β-Secretase 1 (BACE-1) Inhibitors Using Text-Based Approaches and Large Language Models
 
-Link to paper: (https://docs.google.com/document/d/1VHyY4qUn-1ER0_YAZ4OOUxOGPFnBJKkN4_WsmpUCdh4/edit?usp=sharing)
+Link to paper: [here](https://docs.google.com/document/d/1VHyY4qUn-1ER0_YAZ4OOUxOGPFnBJKkN4_WsmpUCdh4/edit?usp=sharing)
 
-Link to presentation: (https://drive.google.com/file/d/1HH_17UPEIeeQUR1Rass9mJ-TZPVSSVm8/view?usp=sharing)
+Link to presentation:[here](https://drive.google.com/file/d/1oGKGAzErk5nVIYNUrM4Ljs4QWY6yzWXS/view?usp=sharing)
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
