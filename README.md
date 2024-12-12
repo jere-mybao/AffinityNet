@@ -33,7 +33,7 @@ Relevant code is in `scripts/05_Edit_Distance.wls`.  In short, we compute the [L
 
 Next, we examined encoding the chemical formulas using [SentenceBERT](https://arxiv.org/abs/1908.10084). Naively, we don't expect this to be amazing, as SentenceBERT is really more about semantic meaning of general text, but it is easy enough to do. Implementation is in `scripts/02_SentenceBert_Similarity.wls`
 
-Using the nearest similarity example yields ~80% accuracy (comparable, maybe slightly better than string edit distance)
+Using the most common label for the 10 nearest items yields ~80% accuracy (comparable, maybe slightly better than string edit distance)
 
 **Possible improvements:**
 - Use a different/better similarity function
